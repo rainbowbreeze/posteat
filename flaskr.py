@@ -70,7 +70,7 @@ def get_menu(request):
     today = date.today()
     year = today.year
     month = today.month
-    day = today.day -4
+    day = today.day
     menu = posteat.get_menu(year, month, day)
     if menu is None:
         return "Nessun menu trovato per il giorno {}".format(get_month_name(today))
