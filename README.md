@@ -93,11 +93,15 @@ curl -i -X GET \
 
 
 Create a developer account etc: https://developers.facebook.com/docs/apps
+Created an app
+used the app id and app secret to create the token, as explained here: https://developers.facebook.com/docs/facebook-login/access-tokens#apptokens
+
 
 https://facebook-sdk.readthedocs.io/en/latest/  
 $ pip install facebook-sdk  
 To obtain access token, start at https://developers.facebook.com/docs/facebook-login/access-tokens  
 Then, it's a webapp without Javascript, so https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow 
+
 
 ### Test facebook
 https://github.com/tino/facebook2/blob/master/test/test_facebook.py

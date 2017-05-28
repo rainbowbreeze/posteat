@@ -60,7 +60,7 @@ class PostEat:
         menu = Query()
         result = self.__db.search(menu.menu_date == str_date)
         if self.__debug:
-            print('---- Result from storage: ', result)
+            print('---- Result from storage:', result)
         if result is None or len(result) == 0:
             return None
         else:
@@ -105,8 +105,7 @@ class PostEat:
                 message = post['message']
                 if self.__check_if_post_is_valid_menu(message):
                     if self.__debug:
-                        print('---- Found the menu for the given day')
-                        print(message)
+                        print('---- Found the menu for the given day\n{}'.format(message))
                     message = self.__strip_title_from_menu(message)
                     break
 
@@ -123,14 +122,10 @@ class PostEat:
         # Get first post line and clean-up it a little bit
         title = text.splitlines()[0].casefold().strip()
         if self.__debug:
-            print('---- Post title: ###', title, '###')
+            print('---- Post title: ###{}###'.format(title))
         return title in ('il menu di oggi', 'il menù di oggi')
 
     def __strip_title_from_menu(self, menu):
         """Strips the first non useful lines from message"""
         # Finds first newline
         return menu.split("\n",2)[2];
-
-
-
-
