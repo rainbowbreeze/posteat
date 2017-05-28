@@ -1,4 +1,3 @@
-from src.posteat.posteat import PostEat
 import pytest
 
 class TestPostEat:
