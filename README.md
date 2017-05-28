@@ -65,6 +65,8 @@ http://rainbowbreeze.pythonanywhere.com/posteatbot/api/v1.0/getmenu
 Interact with Graph API https://developers.facebook.com/docs/graph-api/overview/
 I obtained ad access token from the Graph Explorer
 
+Get all posts on a user's timeline: https://github.com/mobolic/facebook-sdk/blob/master/examples/get_posts.py
+
 curl -i -X GET \
    "https://graph.facebook.com/v2.9/me?fields=id%2Cname&access_token=EAACEdEose0cBALTqc1mZBuFRVHS7pzXgU5bv7siBEOvj8gaPYLpLyVvN47Lfhvg8QRCONN9FQsnwg5n8YZCZAnEYkluZBmMiRdGN079T79fLEEoijbWSQ6VNcPQNRtWdlJKGZAJ6VilksaVcWKMZAVKCCNDAkg8worIkYuYKFEZAcIecDmCZBAsG8R983pEHUGwZD"
 
@@ -135,3 +137,6 @@ Then, it's a webapp without Javascript, so https://developers.facebook.com/docs/
 ### Test facebook
 https://github.com/tino/facebook2/blob/master/test/test_facebook.py
 
+
+### API.ai
+https://docs.api.ai/docs/webhook

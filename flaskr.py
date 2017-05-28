@@ -4,7 +4,7 @@ Conventions:
 
  Authorization code is passed in the X-Authorization field of the payload (or headers)
 """
-
+import locale
 from datetime import date
 
 from flask import Flask, request
@@ -27,6 +27,12 @@ from posteat.posteat import PostEat
 app = Flask(__name__)  # create the application instance :)
 app.config.from_object(__name__)  # load config from this file , flaskr.py
 
+# Set locale. Check available on local machine with locale -a
+try:
+    locale.setlocale(locale.LC_ALL, 'it_IT')
+except:
+    pass
+
 # Creates an instance of the main module
 posteat = PostEat(debug=True)
 
@@ -39,7 +45,20 @@ def hello_world():
 
 
 @app.route('{}/getmenu'.format(BASIC_ADDRESS), methods=['GET'])
-def echo_message():
+def api_getmenu():
+    """Returns the today's menu to visualize on a webpage"""
+    response = get_menu(request)
+    return response.replace('\n', '<BR>')  # Suitable for visualization in a web browser
+
+
+@app.route('{}/getmenuapi'.format(BASIC_ADDRESS), methods=['POST'])
+def api_getmenuapi(request):
+    """Returns the today's menu to interact with API.ai"""
+    response = get_menu()
+    return response.replace('\n', '<BR>')  # Suitable for visualization in a web browser
+
+
+def get_menu(request):
     print('***************************')
     print(request.headers)
     print('***************************')
@@ -51,19 +70,19 @@ def echo_message():
     today = date.today()
     year = today.year
     month = today.month
-    day = today.day
+    day = today.day -4
     menu = posteat.get_menu(year, month, day)
     if menu is None:
         return "Nessun menu trovato per il giorno {}".format(get_month_name(today))
     else:
-        return 'Menu del giorno {}:\n{}'.format(
+        return 'Menu del giorno {}\n\n{}'.format(
             get_month_name(today),
             menu
         )
 
+
 def get_month_name(today):
     return today.strftime('%a %d %B')
-
 
 
 def extract_auth(response):
