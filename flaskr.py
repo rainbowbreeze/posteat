@@ -51,8 +51,12 @@ def echo_message():
     today = date.today()
     year = today.year
     month = today.month
-    day = today.day - 4
-    return posteat.get_menu(year, month, day)
+    day = today.day
+    menu = posteat.get_menu(year, month, day)
+    if menu is None:
+        return "Nessun menu trovato per oggi"
+    else:
+        return menu
 
 
 def extract_auth(response):

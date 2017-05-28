@@ -58,6 +58,9 @@ left empty, as I'm not writing a package, but an application
 python mainfile.py
 python flaskr.py
 
+### PythonAnywhere
+http://rainbowbreeze.pythonanywhere.com/posteatbot/api/v1.0/getmenu
+
 ### Facebook
 Interact with Graph API https://developers.facebook.com/docs/graph-api/overview/
 I obtained ad access token from the Graph Explorer
