@@ -54,9 +54,16 @@ def echo_message():
     day = today.day
     menu = posteat.get_menu(year, month, day)
     if menu is None:
-        return "Nessun menu trovato per oggi"
+        return "Nessun menu trovato per il giorno {}".format(get_month_name(today))
     else:
-        return menu
+        return 'Menu del giorno {}:\n{}'.format(
+            get_month_name(today),
+            menu
+        )
+
+def get_month_name(today):
+    return today.strftime('%a %d %B')
+
 
 
 def extract_auth(response):
