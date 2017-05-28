@@ -1,8 +1,8 @@
 from datetime import date, datetime
-from config import *
-from tinydb import TinyDB, Query
+from .config import *
 
 import facebook
+from tinydb import TinyDB, Query
 
 
 class PostEat:
@@ -10,7 +10,7 @@ class PostEat:
     The main class, entry point for everything
     """
 
-    def __init__(self, debug=False, persist_data=False):
+    def __init__(self, debug=False, persist_data=True):
         # Sets some variables
         self.__debug = debug
         self.__persist_data = persist_data
@@ -22,7 +22,7 @@ class PostEat:
         """Gets the menu for the given day.
         If it's not cached on the storage, it tries to retrieve online"""
         if self.__debug:
-            print('---- Searching for the menu ot the day', year, month, day)
+            print('---- Searching for the menu of the day', year, month, day)
         menu = self.__get_menu_from_storage(year, month, day)
         if menu is not None:
             return menu
