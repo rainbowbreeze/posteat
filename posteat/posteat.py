@@ -88,7 +88,7 @@ class PostEat:
             print('---- Read from facebook')
         # return posteat_posts['posts']['data'][0]['message']
 
-        message = None
+        found_menu = None
         for post in posteat_posts['posts']['data']:
             if self.__debug:
                 print('---- Post')
@@ -106,10 +106,10 @@ class PostEat:
                 if self.__check_if_post_is_valid_menu(message):
                     if self.__debug:
                         print('---- Found the menu for the given day\n{}'.format(message))
-                    message = self.__strip_title_from_menu(message)
+                    found_menu = self.__strip_title_from_menu(message)
                     break
 
-        return message
+        return found_menu
 
     def __check_if_post_has_valid_date(self, post_datetime, year, month, day):
         """Checks if the post was written in the given day of the year"""
