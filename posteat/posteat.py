@@ -1,7 +1,7 @@
 from datetime import date, datetime
-from .config import *
+from posteat.config import *
 
-import facebook
+from facebook import GraphAPI
 from tinydb import TinyDB, Query
 
 
@@ -74,7 +74,7 @@ class PostEat:
 
     def __get_menu_from_facebook(self, year, month, day):
         """Reads post on facebook from the page and retrieve the menu"""
-        graph = facebook.GraphAPI(
+        graph = GraphAPI(
             access_token=self.__access_token,
             version='2.7'
         )
