@@ -51,20 +51,21 @@ def api_getmenu():
     return response.replace('\n', '<BR>')  # Suitable for visualization in a web browser
 
 
-@app.route('{}/getmenuapi'.format(BASIC_ADDRESS), methods=['POST'])
-def api_getmenuapi(request):
+@app.route('{}/apiai_webhook'.format(BASIC_ADDRESS), methods=['POST'])
+def apiai_webhook():
     """Returns the today's menu to interact with API.ai"""
-    response = get_menu()
+    # See example at https://github.com/api-ai/apiai-weather-webhook-sample/blob/master/app.py
+    response = get_menu(request)
     return response.replace('\n', '<BR>')  # Suitable for visualization in a web browser
 
 
-def get_menu(request):
+def get_menu(req):
     print('***************************')
-    print(request.headers)
+    print(req.headers)
     print('***************************')
-    print(request)
+    print(req)
     print('***************************')
-    print(request.get_json())
+    print(req.get_json())
     print('***************************')
     # Finds today's date
     today = date.today()

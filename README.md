@@ -59,7 +59,7 @@ python mainfile.py
 python flaskr.py
 
 ### PythonAnywhere
-http://rainbowbreeze.pythonanywhere.com/posteatbot/api/v1.0/getmenu
+https://rainbowbreeze.pythonanywhere.com/posteatbot/api/v1.0/getmenu
 
 ### Facebook
 Interact with Graph API https://developers.facebook.com/docs/graph-api/overview/
