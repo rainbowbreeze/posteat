@@ -58,6 +58,8 @@ def apiai_webhook():
     # See example at https://github.com/api-ai/apiai-weather-webhook-sample/blob/master/app.py
     #  https://docs.api.ai/docs/webhook
 
+    print("---- API.ai Request headers")
+    print(request.headers)
     apiai_req = request.get_json(silent=True, force=True)
     print("---- API.ai Request")
     print(json.dumps(apiai_req, indent=4))
@@ -89,13 +91,7 @@ def process_apiai_request(apiai_req):
 
 
 def get_menu(req):
-    print('***************************')
-    print(req.headers)
-    print('***************************')
-    print(req)
-    print('***************************')
-    print(req.get_json())
-    print('***************************')
+    """Finds menu for today"""
     # Finds today's date
     today = date.today()
     year = today.year
