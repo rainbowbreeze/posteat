@@ -4,10 +4,11 @@ Conventions:
 
  Authorization code is passed in the X-Authorization field of the payload (or headers)
 """
+import json
 import locale
 from datetime import date
 
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 """
 # Added to prevent ImportError: No module named 'posteat'
@@ -55,8 +56,32 @@ def api_getmenu():
 def apiai_webhook():
     """Returns the today's menu to interact with API.ai"""
     # See example at https://github.com/api-ai/apiai-weather-webhook-sample/blob/master/app.py
-    response = get_menu(request)
-    return response.replace('\n', '<BR>')  # Suitable for visualization in a web browser
+    #  https://docs.api.ai/docs/webhook
+
+    apiai_req = request.get_json(silent=True, force=True)
+    print("Request:")
+    print(json.dumps(apiai_req, indent=4))
+
+    apiai_res = process_apiai_request(apiai_req)
+    res = make_response(apiai_res)
+    res.headers['Content-Type'] = 'application/json'
+    return res
+
+
+def process_apiai_request(apiai_req):
+    """Process API.ai request and return a compatible API.ai result"""
+    if apiai_req.get("result").get("action") != "test_integration":
+        return {}
+
+    menu_text = get_menu(request)
+    apiai_res = {
+        'speech': menu_text,
+        'displayText': menu_text,
+        # "data": data,
+        # "contextOut": [],
+        'source': "apiai-posteatbot"
+    }
+    return apiai_res
 
 
 def get_menu(req):
