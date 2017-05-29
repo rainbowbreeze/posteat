@@ -74,7 +74,7 @@ def apiai_webhook():
 
 def process_apiai_request(apiai_req):
     """Process API.ai request and return a compatible API.ai result"""
-    if apiai_req.get("result").get("action") != "test_integration":
+    if apiai_req.get('result').get('action') != 'show_menu':
         return {}
 
     menu_text = get_menu(request)
