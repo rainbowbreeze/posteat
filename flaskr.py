@@ -59,10 +59,14 @@ def apiai_webhook():
     #  https://docs.api.ai/docs/webhook
 
     apiai_req = request.get_json(silent=True, force=True)
-    print("Request:")
+    print("---- API.ai Request")
     print(json.dumps(apiai_req, indent=4))
 
     apiai_res = process_apiai_request(apiai_req)
+    apiai_res = json.dumps(apiai_res, indent=4)
+    print("---- API.ai Response")
+    print(apiai_res)
+
     res = make_response(apiai_res)
     res.headers['Content-Type'] = 'application/json'
     return res
@@ -79,7 +83,7 @@ def process_apiai_request(apiai_req):
         'displayText': menu_text,
         # "data": data,
         # "contextOut": [],
-        'source': "apiai-posteatbot"
+        'source': 'apiai-posteatbot'
     }
     return apiai_res
 
