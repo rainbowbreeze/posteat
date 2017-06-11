@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from posteat.config import *
+from posteat import globalbag
 
 from facebook import GraphAPI
 from tinydb import TinyDB, Query
@@ -14,8 +14,8 @@ class PostEat:
         # Sets some variables
         self.__debug = debug
         self.__persist_data = persist_data
-        self.__db = TinyDB(DB_FILE)
-        self.__access_token = FACEBOOK_ACCESS_TOKEN
+        self.__db = TinyDB(globalbag.DB_FILE)
+        self.__access_token = globalbag.FACEBOOK_ACCESS_TOKEN
 
 
     def get_menu(self, year, month, day):
@@ -128,4 +128,4 @@ class PostEat:
     def __strip_title_from_menu(self, menu):
         """Strips the first non useful lines from message"""
         # Finds first newline
-        return menu.split("\n",2)[2];
+        return menu.split("\n",2)[2]
